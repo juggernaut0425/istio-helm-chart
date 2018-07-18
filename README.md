@@ -1,5 +1,5 @@
 # istio-helm-chart
-custom istio chart
+istio尝试
 
 
 ## values
@@ -7,7 +7,7 @@ custom istio chart
 	
 * mtls.enabled: false
 
-* rbacEnabled: false
+* rbacEnabled: true
 * galley.enabled: true
 
 * grafana.enabled: true
@@ -15,4 +15,33 @@ custom istio chart
 * servicegraph.enabled: true
 * tracing.enabled: true
 * tracing.jaeger.enabled: true
+
+
+## 解析模版
+ 
+ ```
+ helm template ./ --name istio --namespace istio-system > $HOME/istio.yaml
+ ```
+ or
+ 
+ ```
+ helm install --dry-run --debug ./ --name istio --namespace istio-system
+ ```
+ 
+### 创建namespace
+
+kubectl create namespace istio-system
+
+### 安装 istio
+
+```
+kubectl create -f $HOME/istio.yaml
+```
+
+or
+
+```
+helm install --debug ./ --name istio --namespace istio-system
+```
+
 
